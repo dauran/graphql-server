@@ -1,0 +1,61 @@
+type Query {
+    """
+    List all messages
+    """
+    messages: [Message]
+    """
+    Get user details and list of messages
+    """
+    user(id: ID!): User
+}
+
+type Mutation {
+    """
+    User creates a new message
+    """
+    addMessage(input: MessageInput!): Message
+}
+
+type Subscription {
+    """
+    Suscribe to new messages
+    """
+    messageAdded: Message
+}
+
+type Message {
+    """
+    Id of the message
+    """
+    id: ID!
+    """
+    User who wrote the message
+    """
+    user: User!
+    """
+    Content of the message
+    """
+    text: String!
+}
+
+type User {
+    """
+    Id of the user
+    """
+    id: ID!
+    """
+    Name of the user
+    """
+    name: String!
+    """
+    list of messages sent by the user
+    """
+    messages: [Message]
+}
+
+input MessageInput {
+    """
+    Content of the message
+    """
+    text: String
+}
